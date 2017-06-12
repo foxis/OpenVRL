@@ -1,0 +1,1 @@
+@for %%i in (*.geo) do q3d2geo %%i >>out\(%%i)

@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "asc2geo", ".\bins\asc2geo.vcproj", "{1FA0321F-CEBA-4E51-8C27-7CCCD72097F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "asc2tex", ".\bins\asc2tex.vcproj", "{EBA110DC-EBB7-4DAF-BE50-87287B692655}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FA0321F-CEBA-4E51-8C27-7CCCD72097F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1FA0321F-CEBA-4E51-8C27-7CCCD72097F6}.Debug|Win32.Build.0 = Debug|Win32
+		{1FA0321F-CEBA-4E51-8C27-7CCCD72097F6}.Release|Win32.ActiveCfg = Release|Win32
+		{1FA0321F-CEBA-4E51-8C27-7CCCD72097F6}.Release|Win32.Build.0 = Release|Win32
+		{EBA110DC-EBB7-4DAF-BE50-87287B692655}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EBA110DC-EBB7-4DAF-BE50-87287B692655}.Debug|Win32.Build.0 = Debug|Win32
+		{EBA110DC-EBB7-4DAF-BE50-87287B692655}.Release|Win32.ActiveCfg = Release|Win32
+		{EBA110DC-EBB7-4DAF-BE50-87287B692655}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

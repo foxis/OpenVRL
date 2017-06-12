@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ovrl_lib", "libs\ovrl_lib.vcproj", "{9E65E962-9511-4BB2-BD36-8D0BE550982B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F} = {B4018479-8BC6-4170-9ED6-37E02E5E649F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ode_lib", "libs\ode_lib.vcproj", "{B4018479-8BC6-4170-9ED6-37E02E5E649F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Opcode", "..\core\OPCODE\Opcode.vcproj", "{62931EE5-8029-4B00-A666-B1888494DB83}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua_5.0.2", "libs\lua_5.0.2.vcproj", "{C53239F2-DF58-4D92-90E0-76C91AA9DD88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua_5.1", "libs\lua_5.1.vcproj", "{EF163A4C-0968-4E25-82A3-97AD150C0F53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Debug|Win32.Build.0 = Debug|Win32
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Release|Win32.ActiveCfg = Release|Win32
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Release|Win32.Build.0 = Release|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Debug|Win32.Build.0 = Debug|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Release|Win32.ActiveCfg = Release|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Release|Win32.Build.0 = Release|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Debug|Win32.ActiveCfg = Debug|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Debug|Win32.Build.0 = Debug|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Release|Win32.ActiveCfg = Release|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Release|Win32.Build.0 = Release|Win32
+		{C53239F2-DF58-4D92-90E0-76C91AA9DD88}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C53239F2-DF58-4D92-90E0-76C91AA9DD88}.Debug|Win32.Build.0 = Debug|Win32
+		{C53239F2-DF58-4D92-90E0-76C91AA9DD88}.Release|Win32.ActiveCfg = Release|Win32
+		{C53239F2-DF58-4D92-90E0-76C91AA9DD88}.Release|Win32.Build.0 = Release|Win32
+		{EF163A4C-0968-4E25-82A3-97AD150C0F53}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF163A4C-0968-4E25-82A3-97AD150C0F53}.Debug|Win32.Build.0 = Debug|Win32
+		{EF163A4C-0968-4E25-82A3-97AD150C0F53}.Release|Win32.ActiveCfg = Release|Win32
+		{EF163A4C-0968-4E25-82A3-97AD150C0F53}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

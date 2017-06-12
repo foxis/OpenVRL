@@ -1,0 +1,21 @@
+dirs:
+
+   ~/bin
+   ~/core
+   ~/data
+   ~/include
+   ~/lib
+   ~/src
+   ~/msvc_2k3_sln
+   ~/misc
+   ~/obj  
+   ~/obsolete
+   ~/doc
+
+
+Include into the MSVS 2003 .NET project:
+  libs:  ~/lib
+  includes: ~/include, ~/core/opcode
+
+  output: ~/bin
+  intermediate: ~/obj

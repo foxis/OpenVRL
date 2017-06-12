@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ovrl_lib", "libs\ovrl_lib.vcproj", "{9E65E962-9511-4BB2-BD36-8D0BE550982B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F} = {B4018479-8BC6-4170-9ED6-37E02E5E649F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ode_lib", "libs\ode_lib.vcproj", "{B4018479-8BC6-4170-9ED6-37E02E5E649F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Opcode", "..\core\OPCODE\Opcode.vcproj", "{62931EE5-8029-4B00-A666-B1888494DB83}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Debug.ActiveCfg = Debug|Win32
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Debug.Build.0 = Debug|Win32
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Release.ActiveCfg = Release|Win32
+		{9E65E962-9511-4BB2-BD36-8D0BE550982B}.Release.Build.0 = Release|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Debug.ActiveCfg = Debug|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Debug.Build.0 = Debug|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Release.ActiveCfg = Release|Win32
+		{B4018479-8BC6-4170-9ED6-37E02E5E649F}.Release.Build.0 = Release|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Debug.ActiveCfg = Debug|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Debug.Build.0 = Debug|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Release.ActiveCfg = Release|Win32
+		{62931EE5-8029-4B00-A666-B1888494DB83}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

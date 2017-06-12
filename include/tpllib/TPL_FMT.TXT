@@ -1,0 +1,299 @@
+/*
+ * $Revision: 1.1.1.1 $
+ * $Author: foxis $
+ * $Date: 2005/02/02 15:39:22 $
+ * $Description: tpl[temlpate] file format $
+ *
+ * Revision 0.2  20020111  17:56:12 FoxiE
+ *  :)
+ *
+ * Revision 0.1  20010919  17:56:12 FoxiE
+ *  :)
+ *
+ */
+
+
+  TPL failas yra skirtas ivairiu template'u laikymui/apsikeitimui. Vienas
+TPL failas vienu metu gali laikyti informacija tik apie viena template.
+Template gali buti Mesh, Light, Camera arba dar kokie nors papildomi duomenis.
+Template taip pat gali savyje laikyti kelis template tipus kartu su pagrindiniu
+Template, t.y.: Material, Texture, taip pat gali buti ir Bones, Animation
+informacija...
+
+-------------------------------------------------------------------------------
+
+  Template headerio struktura:
+
+struct tpl_header_struct
+{
+        DWORD   version;
+        CHAR    signature[TPL_MAX_SIG_LEN];
+        CHAR    name[TPL_MAX_NAME_LEN];
+        WORD    UID;
+        WORD    GID;
+        DWORD   type;
+        DWORD   comment_size;
+        DWORD   compression;
+        DWORD   original_size;
+        DWORD   compressed_size;
+        TIME_t  time;
+        DATE_t  date;
+
+        DWORD   template_offs;
+        DWORD   material_offs;
+        DWORD   texture_offs;
+        DWORD   bones_offs;
+        DWORD   animation_offs;
+        BYTE    wasted[...];
+};      256 = sizeof(tpl_header_size)
+
+version   - Temlpate failo strukturos versijos numeris.
+signature - Template failo signatura, paprastai yra {'T','P','L','\0'}
+name      - Sio Template vardas
+UID       - User ID, kolkas nenaudojamas
+GID       - Group ID, kolkas nenaudojamas
+type      - Mesh Template tipas, gali buti:
+  TPL_GEOMETRY - Template bus vertexu ir indexu bufferiai
+  TPL_VIPM     - VIPM Mesh
+  TPL_VDPM     - VDPM Mesh
+  TPL_VOLUME   - Volume Mesh [voxel Mesh]
+  TPL_TERRAIN  - Heightfield data
+  TPL_CAMERA   - Camera
+  TPL_LIGHT    - Light
+  TPL_SPACEWRAP - SpaceWrap
+  TPL_PARTICLES - Particles
+
+comment_size - komentaro dydis. Komentaras prikabinamas failo gale arba
+  headerio gale, kolkas dar neapsisprendziau. kogero jis eis po headerio.
+compression - compresijos budas panaudotas rasant duomenis i si faila
+original_size - jei buvo panaudota kompresija, sis memberis nurodo
+  koks yra originalus duomenu dydis nenaudojant kompresijos
+compressed_size - suspaustu duomenu dydis
+time      - Paskutines modifikacijos laikas
+date      - paskutines modifikacijos data
+
+template_offs - kiek baitu nuo failo pradzios reikia praleisti kad
+  pasiektumeme Template
+material_offs - offsetas i materialus
+texture_offs - offsetas i texturas
+bone_offs - offsetas i kaulus
+animation_offs - offsetas i animacijos trekus
+wasted - nepanaudota
+-------------------------------------------------------------------------------
+
+  Materialo struktura.
+Si struktura apraso materiala is kurio "padaryti" Mesh'ai. Apraso beveik
+visus galimus materialo properties.
+
+DWORD                   materials;
+struct tpl_material_struct
+{
+        DWORD           version;
+        CHAR            signature[TPL_MAX_SIG_LEN];
+        CHAR            name[TPL_MAX_NAME_LEN];
+        DWORD           style;
+        DWORD           flags;
+        tpl_DRGB_t      ambient;
+        tpl_DRGB_t      diffuse;
+        tpl_DRGB_t      specular;
+        tpl_DRGB_t      filter;
+        tpl_DRGB_t      refraction;
+        tpl_real        shiness;
+        tpl_real        strength;
+        tpl_real        self_illumination;
+        tpl_real        opacity;
+        tpl_real        bounce_coeficient;
+        tpl_real        static_friction;
+        tpl_real        sliding_friction;
+
+        DWORD           wasted[...];
+        DWORD           maps[TPL_MATERIAL_MAX_MAPS];
+} [materials];  512 = sizeof(tpl_material_struct)
+
+materials - kiek is eiles materialu irasyta siame faile
+ version   - materialo strukturos versijos numeris
+ signature - {'M', 'A', 'T', '\0'}
+ name      - materialo pavadinimas
+ style     - materialo stiliai
+ flags     - flagai
+ ambient   - Ambient materialo komponente
+ diffuse   - diffuse materialo komponente
+ specular  - specular materialo komponente
+ filter    - filter
+ shiness   - kiek sviesos atspindi sis materialas
+ strength  - specular highlight stiprumas
+ self_illumination - kiek sviesos isspinduliuoja sis materialas
+ refraction - luzio koeficientas
+ opacity    - permatamumas
+ bounce_coeficient - tangrumas
+ static_friction   - statines trinties jegos koeficientas
+ sliding_friction  - slidimo trinties jegos koeficientas
+ wasted    - nepanaudota
+ maps      - texturos
+-------------------------------------------------------------------------------
+
+  Texturos struktura.
+
+DWORD           textures;
+struct tpl_texture_struct
+{
+        DWORD   version;
+        CHAR    signature[TPL_MAX_SIG_LEN];
+        CHAR    name[TPL_MAX_NAME_LEN];
+
+        DWORD   width;
+        DWORD   height;
+        DWORD   bpl;                /* */
+        DWORD   styles;
+        WORD    bpp;
+        WORD    compression;
+
+        DWORD   compressed_size;
+        DWORD   original_size;
+
+        BYTE            wasted[...];
+
+        DWORD   srf_offs;           /* offs to the surface data */
+        DWORD   srf_size;           /* surface data size */
+        DWORD   lookup_offs;        /* lookup, if any, offset in the file */
+        DWORD   lookup_size;        /* lookup, if any, data size */
+} [textures];  512 = sizeof(tpl_texture_struct)
+
+textures  - texturu skaicius irasytas siame faile
+version
+signature - {'T','E','X','\0'}
+name
+
+width     - texturos plotis pixeliais
+height    - texturos aukstis pixeliais
+bpl       - kiek baitu vienoje eiluteje
+styles    - texturos stiliai laikymo stiliai, gali buti:
+  TPL_TEX_NEXT_PATH       - srf_offs rodo i failo pavadinimo stringa
+  TPL_TEX_NEXT_RAW        - srf_offs rodo i bitmapa
+  TPL_TEX_NEXT_SRF        - srf_offs rodo i surface
+  TPL_TEX_NEXT_TEX        - srf_offs rodo i betkokio formato bitmapa
+  TPL_TEX_NEXT_LIBNAME    - nenaudojamas
+
+bpp       - kiek bitu per viena pixeli
+compression - kompresijos budas, gali buti:
+  TPL_TEX_COMPRESSION_NONE       - jokio glaudinimo algoritmo
+  TPL_TEX_COMPRESSION_RLE        - entirely RLE-encoded
+  TPL_TEX_COMPRESSION_LZW        - entirely LZW-encoded
+  TPL_TEX_COMPRESSION_ROW_RLE    - RLE per ROW
+  TPL_TEX_COMPRESSION_ROW_LZW    - LZW per ROW
+
+wasted - ...
+
+compressed_size - ...
+original_size - ...
+
+srf_offs - rodykle i texturos duomenis
+srf_size - texturos duomenu dydis, baitais
+lookup_offs - lookup, tai tipo Palette. lookup'ai reikalingi
+  kai bitmapas yra indexed formato. standartinis yra 8bpp indexinis
+  formatas, bet mano klases palaiko betkokio bpp indexed formata.
+lookup_size - lookup table dydis baitais
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_GEOMETRY
+      - Template bus vertexu ir indexu bufferiai
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+struct tpl_rawmesh_struct
+{
+        DWORD           version;
+        CHAR            signature[TPL_MAX_SIG_LEN];
+        DWORD           VB_flags;
+        DWORD           verteces;
+        WORD            vertex_size;
+        DWORD           faces;
+        WORD            face_size;
+        BYTE            wasted[64-40-TPL_MAX_SIG_LEN];
+};
+
+signature - {'R','A','W','\0'}
+VB_flags - veliavos pasakancios apie Vertex bufferi, gali buti:
+  TPL_VB_XYZ    - VB turi Position [float, float, float]
+  TPL_VB_C      - VB turi spalva   [float, float, float, float]
+  TPL_VB_NORMAL - VB turi normale [float, float, float]
+  TPL_VB_MASS   - VB turi mase [double]
+  TPL_VB_TX1    - VB turi pirmos texturos UV koordinates [float, float]
+  TPL_VB_TX2    - VB turi 2s texturos UV koordinates [float, float]
+  TPL_VB_TX3    - VB turi 3s texturos UV koordinates [float, float]
+  TPL_VB_TX4    - VB turi 4s texturos UV koordinates [float, float]
+  TPL_VB_B1     - VB turi pirma Blend faktoriu [float]
+  TPL_VB_B2     - VB turi pirma Blend faktoriu [float]
+  TPL_VB_B3     - VB turi pirma Blend faktoriu [float]
+  TPL_VB_B4     - VB turi pirma Blend faktoriu [float]
+
+verteces - kiek vertexu sudaro shi mesh'a
+vertex_size - kiek baitu uzima vienas vertexas
+faces       - kiek trikampiu sudaro si mesh'a
+face_size   - kiek baitu uzima vienas trikampis
+
+  VB eina iskart po sio headerio ir uzima, baitais:
+    vertex_size*verteces + face_size*faces;
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_VIPM
+      - VIPM Mesh
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_VDPM
+      - VDPM Mesh
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_VOLUME
+      - Volume Mesh [voxel Mesh]
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_TERRAIN
+      - Heightfield data
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_CAMERA
+      - Camera
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_LIGHT
+      - Light
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+  
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_SPACEWRAP
+      - SpaceWrap
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+
+
+-------------------------------------------------------------------------------
+
+    Template tipas: TPL_PARTICLES
+      - Particles
+
+    NOTE: temlpate vardas bus headerio name lauke.
+
+
